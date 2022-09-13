@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postnet</title>
+
+    <link rel="stylesheet" href="../styles/tailwind.css">
+    <link rel="icon" type="image/x-icon" href="./assets/nativa02.svg">
+
+</head>
+
+<body>
+
+    <!-- DIV CON LA APLICACIÓN DE VUE -->
+    <div id="app" v-cloak>
+
+        <!-- DIV PARA APLICAR LOS DIFERENTES TEMAS DENTRO DE LA PÁGINA -->
+        <div :class="tema=='tema_0' ? '' : tema=='tema_1' ? 'theme-autumn-light' : tema=='tema_2' ? 'theme-autumn-dark' : tema=='tema_3' ? 'theme-winter-dark' : ''"
+            class="bg-skin-normal min-h-screen">
+
+            <!-- BARRA DE NAVEGACIÓN -->
+            <div class="aparecer md:flex row fixed w-full justify-between pt-2 z-30 glass2 hidden">
+                <a class="ml-6 m-3 img1 w-10 h-10" href="/web/accounts.html"></a>
+
+                <nav class="sm:flex row justify-around antialiased text-skin-base">
+                    <div class="supercenter-row ">
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3 hover:bg-skin-fill  rounded-full shadow"
+                            @click="theme(0)"></button>
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                            @click="theme(1)"></button>
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                            @click="theme(2)"></button>
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1  w-3 h-3 hover:bg-skin-fill rounded-full shadow"
+                            @click="theme(3)"></button>
+                    </div>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0 hover:bg-opacity hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)]  ease-in duration-300"
+                            href="/web/accounts.html">ACCOUNTS</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0 hover:bg-opacity hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)]  ease-in duration-300"
+                            href="/web/transfers.html">TRANFERS</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="/web/cards.html">CARDS</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="/web/loan-application.html">LOANS APPLICATION</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="javascript:void(0);" @click="bankLogout">LOGOUT</a>
+                    </span>
+                </nav>
+            </div>
+
+            <!-- TEMAS RESPONSIVE -->
+            <div class="md:hidden flex flex-row fixed w-full justify-between z-50">
+                <div class="supercenter-row md:hidden ">
+                    <button class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3 hover:bg-skin-fill  rounded-full shadow"
+                        @click="theme(0)"></button>
+                    <button class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                        @click="theme(1)"></button>
+                    <button class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                        @click="theme(2)"></button>
+                    <button class="bg-skin-button-muted pr-1 pl-1 m-1  w-3 h-3 hover:bg-skin-fill rounded-full shadow"
+                        @click="theme(3)"></button>
+                </div>
+                <div class=" flex flex-col items-center glass rounded-2xl mr-3 mt-3">
+                    <a class="p-3 m-2 rounded-lg text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased"
+                        href="javascript:void(0);" @click="bankLogout">LOGOUT</a>
+                </div>
+
+
+            </div>
+
+
+            <!-- BARRA DE NAVEGACIÓN RESPONSIVE-->
+            <div
+                class="aparecer md:hidden inset-x-0 bottom-0 pb-4 row fixed w-full pt-2 z-30 glass2 flex items-center justify-center">
+
+                <nav class="flex flex-row antialiased text-skin-base">
+                    <span class=" flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased "
+                            href="/web/accounts.html">ACCOUNTS</a>
+                        <div class="absolute mt-11 w-2 h-2 rotate-45 bg-skin-fill aparecer"></div>
+                    </span>
+                    <span class=" flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg  text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0"
+                            href="/web/transfers.html">TRANFERS</a>
+                    </span>
+                    <span class="flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg  text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0"
+                            href="/web/cards.html">CARDS</a>
+                    </span>
+                    <span class="flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg  text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0"
+                            href="/web/loan-application.html">LOANS</a>
+                    </span>
+                </nav>
+            </div>
+
+
+            <!-- MODAL CREATION OK -->
+            <div v-if="modal"
+                class="aparecer fixed flex justify-center bg-opacity-80 aparecer z-30 w-full h-full glass2">
+            </div>
+            <div v-if="modal"
+                class="aparecer fixed flex justify-center justify-items-center content-center w-full z-40">
+                <div
+                    class="flex flex-col justify-center items-center mt-10 bg-skin-normal filter-none w-96 h-56 rounded-2xl shadow-sm border border-slate-300">
+                    <p class="text-skin-base text-center p-2 m-1 "><b>{{messageModal}}</b>
+                        <button v-if="error" class="boton3a" @click="error=false; modal=false">OK</button>
+                    </p>
+                </div>
+            </div>
+
+            <!-- CUERPO -->
+
+            <section class="pt-24 flex flex-col mr-5 ml-5">
+
+                <!-- CUERPO ARRIBA -->
+                <section class="flex flex-col content-center items-center justify-center text-skin-base">
+
+                    <p
+                        class="mt-4 mb-4 font-bahnschrift text-2xl font-bold text-skin-muted text-opacity-70 text-center">
+                        POST NET PAYMENT</p>
+
+                    <div
+                        class="md:w-1/2 w-full md:m-3 m-1 p-2 rounded-lg shadow-[1px_1px_5px_rgba(var(--color-button-muted),0.6)]">
+
+                        <form @submit.prevent="cardPayment()" class="flex flex-col items-center pb-5">
+
+                            <p class="mt-4 mb-4 font-bahnschrift text-lg font-bold text-skin-muted text-center">COMPLETE
+                                THE REQUIRED INFORMATION</p>
+
+                            <div class="mb-3">
+                                <select v-model="paymentDTO.cardNumber"
+                                    class="p-1 rounded-lg bg-skin-normal bg-opacity-70">
+                                    <option disabled value="" class=" text-opacity-30 ">Please select one card</option>
+                                    <option v-for="card in cards" :value="card.number">{{card.number}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 font-bahnschrift">
+                                <label for="description" class="-mb-1">DESCRIPTION</label>
+                                <input v-model="paymentDTO.description" type="text"
+                                    class="m-2 ml-4 bg-skin-normal bg-opacity-50" id="description"
+                                    placeholder="Add a description to the payment">
+                            </div>
+
+                            <div class="mb-3 font-bahnschrift">
+                                <label for="cvv" class="-mb-1">CVV</label>
+                                <input v-model="paymentDTO.cvv" type="number"
+                                    class="m-2 ml-4 bg-skin-normal bg-opacity-50" id="cvv" placeholder="CVV">
+                            </div>
+
+                            <div class="mb-3 font-bahnschrift">
+                                <label for="amount" class="-mb-1">Amount</label>
+                                <input v-model="paymentDTO.amount" type="number"
+                                    class="m-2 ml-4 bg-skin-normal bg-opacity-50" id="amount" placeholder="CVV">
+                            </div>
+
+                            <button class="boton3b" type="submit">PAY</button>
+
+
+                        </form>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="./scripts/postnet.js"></script>
+</body>
+
+</html>

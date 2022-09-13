@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+
+  <link rel="stylesheet" href="./styles/tailwind.css">
+
+</head>
+
+<body>
+
+  <div id="app" v-cloak>
+    <div>
+
+      <div class="w-3/4">
+
+        <form class="container p-6 m-5" @submit.prevent="subirCliente()">
+          <h1 class="pb-2">Ingreso de datos de nuevos clientes</h1>
+          <div class="mb-3">
+            <label for="Nombre" class="form-label">Nombre</label>
+            <input v-model="nuevoCliente.name" type="text" required class="m-2 mr-4" id="Nombre" placeholder="Sinuosa">
+          </div>
+          <div class="mb-3">
+            <label for="Apellido" class="form-label">Apellido</label>
+            <input v-model="nuevoCliente.lastName" type="text" required class="m-2 mr-4" id="Apellido"
+              placeholder="es la huella">
+          </div>
+          <div class="mb-3">
+            <label for="Edad" class="form-label">Edad</label>
+            <input v-model="nuevoCliente.age" type="text" class="m-2 mr-4" id="Edad" placeholder="que rige">
+          </div>
+          <div class="mb-3">
+            <label for="Email" class="form-label">Email</label>
+            <input v-model="nuevoCliente.email" type="email" required class="m-2 mr-4" id="Email"
+              placeholder="nuestros destinos">
+          </div>
+          <button type="submit" class="boton1">Añadir Cliente</button>
+        </form>
+
+      </div>
+
+      <div class="w-1/4">
+      
+        <span class="pr-4 flex flex-col items-center">
+          <a class="p-3 m-2 rounded-md text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+              href="javascript:void(0);" @click="bankLogout">LOGOUT</a>
+        </span>
+
+      </div>
+
+    </div>
+   
+    <h1 class="text-6xl font-bahnschrift font-bold antialiased text-center m-5">
+      Hello ADMIN!
+    </h1>
+
+    <h1 class="text-4xl font-bahnschrift">Crea tus propios préstamos</h1>
+    <form class="container p-6 m-5 flex flex-col content-center" @submit.prevent="subirLoan(); errorLoan==0;">
+
+      <input required class="m-3 border-2 w-1/2 border-violet-600" type="number" id="id" v-model="LoanDTO.id">
+      <label for="id" class="mb-2 -mt-2">ID</label>
+
+      <input required class="m-3 border-2 w-1/2 border-violet-600" type="text" id="name" v-model="LoanDTO.name">
+      <label for="name" class="mb-2 -mt-2">Name</label>
+
+      <input required class="m-3 border-2 w-1/2 border-violet-600" type="number" id="amount" v-model="LoanDTO.maxAmount">
+      <label for="amount" class="mb-2 -mt-2">Max Amount</label>
+
+      <input required class="m-3 border-2 w-1/2 border-violet-600" type="number" id="interest" v-model="LoanDTO.interest" step=".01">
+      <label for="interest" class="mb-2 -mt-2">Interest</label>
+
+      <input required class="m-3 border-2 w-1/2 border-violet-600" type="array" id="payments" v-model="payments">
+      <label for="payments" class="mb-2 -mt-2">Payments, separa los números con coma con coma</label>
+
+      <button class="boton2" type="submit">SUBIR</button>
+
+    </form>
+
+
+
+    <div class="container col-md-12 m-2">
+      <h2>En esta tabla puedes ver los datos anónimos de nuestros acomodados clientes</h2>
+      <table class="table">
+
+        <thead>
+
+          <tr>
+
+            <td>Nombre de Cliente</td>
+            <td>Correo Electrónico</td>
+            <td>Edad</td>
+            <td>Opciones</td>
+            <td>¿Eliminar?</td>
+
+          </tr>
+
+        </thead>
+
+        <tbody v-for="(cliente,i) in datosClientes">
+          <!------------------ IMPRESIÓN DE DATOS DE CLIENTE  ------------------------>
+          <tr class="aparecer">
+
+            <td>{{cliente.name}} {{cliente.lastName}}</td>
+            <td>{{cliente.email}}</td>
+            <td>{{cliente.age}}</td>
+            <td>
+              <a href="javascript:void(0);"
+                @click="detallesCuentas[i].permisoDetalles=true; formularioEditar[i].permisoEditar=false"><img
+                  class="icon me-3" src="./web/assets/info.png" alt=""></a>
+              <a @click="formularioEditar[i].permisoEditar=true" href="javascript:void(0);"><img class="icon"
+                  src="./web/assets/editing.png" alt="editar"></a>
+            </td>
+            <td><a class="aparecer" v-if="!formularioEditar[i].permisoBorrar"
+                @click="formularioEditar[i].permisoBorrar=true" href="javascript:void(0);"><img class="icon"
+                  src="./web/assets/delete.png" alt="editar"></a>
+              <!------------------ CONFIRMACIÓN PARA BORRAR  ------------------------>
+              <div class="aparecer" v-if="formularioEditar[i].permisoBorrar">
+                <p>¿Seguro que quieres borrarlo?</p><button class="btn btn-danger" type="button"
+                  @click="eliminarCliente(cliente.id)">Si</button><button class="btn btn-warning ms-3" type="button"
+                  @click="formularioEditar[i].permisoBorrar=false">No</button>
+              </div>
+            </td>
+          </tr>
+
+          <!------------------ DETALLES DE LAS CUENTAS  ------------------------>
+          <tr class="aparecer" v-if="detallesCuentas[i].permisoDetalles" v-for="cuenta in cliente.accountSet">
+
+            <td colspan="2">Número de cuenta: {{cuenta.number}}</td>
+            <td colspan="2">Fecha de creación: {{cuenta.creationDate}}</td>
+            <td>Balance: {{cuenta.balance}}</td>
+
+          </tr>
+
+          <tr v-if="detallesCuentas[i].permisoDetalles">
+
+            <td colspan="2"><a :href="detallesCuentas[i].url">PÁGINA PERSONAL</a></td>
+            <td></td>
+            <td></td>
+            <td><a @click="detallesCuentas[i].permisoDetalles=false" href="javascript:void(0);"><img class="icon"
+                  src="./web/assets/back.png" alt="volver"></a></td>
+
+          </tr>
+
+          <!------------------ SECCIÓN PARA EDITAR  ------------------------>
+          <tr v-if="formularioEditar[i].permisoEditar" class="aparecer">
+
+            <td><input v-model="editarCliente[i].name" type="text" class="form-control" id="Nombre"
+                :placeholder="'Nombre: '+cliente.name"><input v-model="editarCliente[i].lastName" type="text"
+                class="form-control" id="Nombre" :placeholder="'Apellido: '+cliente.lastName"></td>
+
+            <td><input v-model="editarCliente[i].email" type="email" class="form-control" id="Email"
+                :placeholder="'Correo actual: '+cliente.email"></td>
+
+            <td><input v-model="editarCliente[i].age" type="number" class="form-control" id="Edad"
+                :placeholder="'Edad: '+cliente.age"></td>
+
+            <td><a
+                @click="actualizarCliente(editarCliente[i], formularioEditar[i].idCliente); formularioEditar[i].permisoEditar=false"
+                href="javascript:void(0);"><img class="icon" src="./web/assets/checked.png" alt="editar"></a></td>
+
+            <td><a @click="formularioEditar[i].permisoEditar=false" href="javascript:void(0);"><img class="icon"
+                  src="./web/assets/back.png" alt="volver"></a></td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+
+
+    <div class="p-2 m-2">
+      <h2>En esta hermosura se ven los datos en formato JSON</h2>
+      <!------------------ DATOS EN FORMATO JSON  ------------------------>
+      <pre>
+        {{datosClientes}}
+      </pre>
+
+    </div>
+
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="./web/scripts/admin.js"></script>
+
+</body>
+
+</html>

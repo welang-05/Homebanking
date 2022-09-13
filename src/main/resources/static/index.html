@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main</title>
+
+  <link rel="stylesheet" href="/styles/tailwind.css">
+  <link rel="icon" type="image/x-icon" href="/web/assets/nativa02.svg">
+
+</head>
+
+<body>
+
+  <div id="app" v-cloak class="aparecer ">
+
+    <!-- MODAL DE ERROR -->
+    <div v-if="modalError" class="aparecer fixed flex justify-center bg-opacity-80 aparecer z-30 w-full h-full glass2">
+    </div>
+    <div v-if="modalError" class="aparecer fixed flex justify-center justify-items-center content-center w-full z-40">
+      <div
+        class="flex flex-col justify-center items-center mt-10 bg-skin-normal filter-none w-96 h-36 rounded-2xl shadow-sm border border-slate-300">
+        <p class="text-skin-base text-center p-2 m-1">{{error}}</p>
+        <button class="boton1 font-bold" @click="modalError=false; error='';">OK</button>
+      </div>
+    </div>
+
+    <!-- MODAL REGISTRO REALIZADO -->
+    <div v-if="modalConfirmation"
+      class="aparecer fixed flex justify-center bg-opacity-80 aparecer z-30 w-full h-full glass2">
+    </div>
+    <div v-if="modalConfirmation"
+      class="aparecer fixed flex justify-center justify-items-center content-center w-full z-40">
+      <div
+        class="flex flex-col justify-center items-center mt-10 bg-skin-normal filter-none w-96 h-36 rounded-2xl shadow-sm border border-slate-300">
+        <p class="text-skin-base text-center p-2 m-1 font-bold">Register made successfully!</p>
+      </div>
+    </div>
+
+    <!-- CUERPO -->
+
+    <div class="flex flex-col content-center items-center nativa_f min-h-screen bg-scroll">
+
+      <section class="supercenter-row p-3 m-3 rounded-xl md:w-3/4 w-full"><img src="/web/assets/nativa01.svg" class="p-8 md:w-1/2 w-full"
+          alt=""></section>
+
+      <section
+        class="aparecer mr-10 ml-10 pb-14 mb-20 md:w-3/5 w-full rounded-3xl flex-col grid justify-center align-middle justify-items-center glass drop-shadow-[0px_1px_2px_var(--color-button-accent)]">
+       
+        
+        <p class="font-semibold text-2xl p-6 antialiased text-center text-skin-base">Welcome</p>
+        <div v-if="!registerOn"
+          class="aparecer w-auto p-3 bg-skin-normal text-skin-base shadow rounded-xl opacity-80 hover:opacity-95">
+          <form @submit.prevent="bankLogin()">
+          <h1 class="p-2 pb-5 text-skin-muted text-center">Please enter your login information</h1>
+          <div class="supercenter-col">
+            <input v-model="login.name"
+              class="p-2 m-3 w-64 rounded-lg placeholder:text-center autofill:bg-skin-muted text-skin-muted focus:border-0 border-gray-900"
+              type="email" placeholder="email" required>
+            <input v-model="login.pwd"
+              class="p-2 m-3 w-64 rounded-lg placeholder:text-center autofill:bg-skin-muted text-skin-muted focus:border-0  border-gray-900"
+              type="password" placeholder="password" required>
+            <button type="submit"
+              class="p-2 m-5 w-16 shadow font-semibold antialiased bg-skin-muted drop-shadow-[0px_3px_3px_var(--color-button-muted)] rounded hover:bg-skin-fill hover:text-skin-inverted hover:shadow-[0px_2px_8px_0px_rgba(var(--color-fill),0.5)] ease-in duration-200">SEND</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="pt-5" v-if="!registerOn">
+          <h1 class="text-skin-base">or <a class="font-bold text-skin-inverted" href="javascript:void(0);"
+              @click="registerOn=true">register</a> </h1>
+        </div>
+
+        <div v-if="registerOn"
+          class="aparecer w-auto p-3 bg-skin-normal text-skin-base shadow rounded-xl opacity-80 hover:opacity-95">
+          <h1 class="p-2 pb-5 text-skin-muted text-center">Please enter your personal information</h1>
+          <form @submit.prevent="bankSignIn()">
+          <div class="supercenter-col">
+            <input v-model="register.name"
+              class="p-2 m-3 w-64 rounded-lg placeholder:text-center autofill:bg-skin-muted text-skin-muted focus:border-0 border-gray-900"
+              type="text" placeholder="your name" required @keyup="allowedCharactersName(register.name,1)"> 
+            <input v-model="register.lastName"
+              class="p-2 m-3 w-64 rounded-lg placeholder:text-center autofill:bg-skin-muted text-skin-muted focus:border-0 border-gray-900"
+              type="text" placeholder="your last name" required
+              @keyup="allowedCharactersName(register.lastName,2)">
+            <input v-model="register.email"
+              class="p-2 m-3 w-64 rounded-lg placeholder:text-center autofill:bg-skin-muted text-skin-muted focus:border-0 border-gray-900"
+              type="email" placeholder="email" required >
+            <input v-model="register.pwd"
+              class="p-2 m-3 w-64 rounded-lg placeholder:text-center autofill:bg-skin-muted text-skin-muted focus:border-0  border-gray-900"
+              type="password" placeholder="password" required @keyup="verifyPassword()">
+              <p class="mt-2 mb-2 text-red-500 font-semibold text-xs">{{register.errorPwd}}</p>
+            <button type="submit"
+              class="p-2 m-5 w-24 shadow font-semibold antialiased bg-skin-muted drop-shadow-[0px_3px_3px_var(--color-button-muted)] rounded hover:bg-skin-fill hover:text-skin-inverted hover:shadow-[0px_2px_8px_0px_rgba(var(--color-fill),0.5)] ease-in duration-200">SING
+              IN</button>
+          </div>
+        </form>
+        </div>
+
+        <div class="pt-5" v-if="registerOn">
+          <h1 class="text-skin-base">Or if you have an account, <a class="font-bold text-skin-inverted"
+              href="javascript:void(0);" @click="registerOn=false; register.errorPwd =''; register.pwd= ''">return</a> </h1>
+        </div>
+
+
+      </section>
+
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="/web/scripts/index.js"></script>
+
+</body>
+
+</html>

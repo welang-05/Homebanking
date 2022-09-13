@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards</title>
+
+    <link rel="stylesheet" href="../styles/tailwind.css">
+    <link rel="icon" type="image/x-icon" href="./assets/nativa02.svg">
+
+</head>
+
+<body>
+
+    <div id="app" v-cloak>
+
+        <!-- DIV PARA APLICAR LOS DIFERENTES TEMAS DENTRO DE LA PÁGINA -->
+        <div :class="tema=='tema_0' ? '' : tema=='tema_1' ? 'theme-autumn-light' : tema=='tema_2' ? 'theme-autumn-dark' : tema=='tema_3' ? 'theme-winter-dark' : ''"
+            class="bg-skin-normal min-h-screen">
+
+            <!-- BARRA DE NAVEGACIÓN -->
+            <div class="aparecer md:flex row fixed w-full justify-between pt-2 z-30 glass2 hidden">
+                <a class="p-2 ml-6 m-3 img1 w-10 h-10" href="/web/accounts.html"></a>
+
+                <nav class="sm:flex row justify-around antialiased text-skin-base">
+                    <div class="supercenter-row ">
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3 hover:bg-skin-fill  rounded-full shadow"
+                            @click="theme(0)"></button>
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                            @click="theme(1)"></button>
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                            @click="theme(2)"></button>
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1  w-3 h-3 hover:bg-skin-fill rounded-full shadow"
+                            @click="theme(3)"></button>
+                    </div>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="/web/accounts.html">ACCOUNTS</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="/web/transfers.html">TRANFERS</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-opacity-90 hover:shadow-[0px_0px_2px_rgba(var(--color-fill),1)]  ease-in duration-300"
+                            href="/web/cards.html">CARDS</a>
+                        <div class="absolute mt-11 w-2 h-2 rotate-45 bg-skin-button-hover-accent aparecer"></div>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="/web/loan-application.html">LOANS APPLICATION</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="javascript:void(0);" @click="bankLogout">LOGOUT</a>
+                    </span>
+                </nav>
+            </div>
+
+            <!-- TEMAS RESPONSIVE -->
+            <div class="md:hidden flex flex-row fixed w-full justify-between z-50">
+                <div class="supercenter-row md:hidden ">
+                    <button class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3 hover:bg-skin-fill  rounded-full shadow"
+                        @click="theme(0)"></button>
+                    <button class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                        @click="theme(1)"></button>
+                    <button class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                        @click="theme(2)"></button>
+                    <button class="bg-skin-button-muted pr-1 pl-1 m-1  w-3 h-3 hover:bg-skin-fill rounded-full shadow"
+                        @click="theme(3)"></button>
+                </div>
+                <div class=" flex flex-col items-center glass rounded-2xl mr-3 mt-3">
+                    <a class="p-3 m-2 rounded-lg text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased"
+                        href="javascript:void(0);" @click="bankLogout">LOGOUT</a>
+                </div>
+
+
+            </div>
+
+
+            <!-- BARRA DE NAVEGACIÓN RESPONSIVE-->
+            <div
+                class="aparecer md:hidden inset-x-0 bottom-0 pb-4 row fixed w-full pt-2 z-30 glass2 flex items-center justify-center">
+
+                <nav class="flex flex-row antialiased text-skin-base">
+                    <span class=" flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased "
+                            href="/web/accounts.html">ACCOUNTS</a>
+                    </span>
+                    <span class=" flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg  text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0"
+                            href="/web/transfers.html">TRANFERS</a>
+                    </span>
+                    <span class="flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg  text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0"
+                            href="/web/cards.html">CARDS</a>
+                        <div class="absolute mt-10 w-2 h-2 rotate-45 bg-skin-button-hover-accent aparecer"></div>
+                    </span>
+                    <span class="flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg  text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0"
+                            href="/web/loan-application.html">LOANS</a>
+                    </span>
+                </nav>
+            </div>
+
+            <!-- MODAL DELETE CARDS-->
+            <div v-if="modalDeleteCard"
+                class="aparecer fixed flex justify-center bg-opacity-80 aparecer z-30 w-full h-full glass2">
+            </div>
+            <div v-if="modalDeleteCard"
+                class="aparecer fixed flex justify-center justify-items-center content-center w-full z-40">
+                <div
+                    class="flex flex-col justify-center items-center mt-10 bg-skin-normal bg-opacity-50 hover:bg-skin-button-muted hover:bg-opacity-60 text-skin-base filter-none w-4/5 h-[30rem] rounded-2xl shadow-sm border border-slate-300 ease-in duration-300">
+
+                    <p class="font-notosans font-semibold mt-2 antialiased">Select the card you want to delete</p>
+
+                    <div class="bg-skin-button-accent h-0.5 w-1/4 mt-6 mb-2 opacity-80"></div>
+                    <!-- LÍNEA -->
+
+                    <form class="flex flex-col flex-wrap p-3" @submit.prevent="deleteCard() ">
+
+                        <div class="w-full flex flex-col items-center content-center justify-center">
+                            <div v-for="(card,i) in cards">
+
+                                <input class="hidden" type="radio" :id="card.number" :value="card.number"
+                                    v-model="numberCardToDelete">
+                                <label :for="card.number">
+                                    <div class=" flex relative z-10 hover:z-50 group bg-right mt-2  hover:w-72 hover:h-14 bg-[length:330px] rounded-tr-lg rounded-bl-lg hover:rounded-lg hover:bg-opacity-100 ease-in duration-200 text-center items-center justify-center"
+                                        :class="[hover[i] ? 'blur-sm' : '', numberCardToDelete==card.number ? 'bg-[length:420px] border-2 border-red-600 w-72 h-14 rounded-lg' : 'w-60 h-10  hover:bg-[length:390px] grayscale-[50%] hover:grayscale-0' , confirmationDeleteCard && (card.number!=numberCardToDelete) ? 'hidden' : '' , card.cardColor]"
+                                        @mouseover="cardHover(i)" @mouseleave="this.hover=this.hover.map(hover=>false)">
+                                        <p
+                                            class="text-white place-self-center font-bahnschrift font-bold drop-shadow-md group-hover:opacity-100 ease-in duration-200">
+                                            {{card.number}} {{card.cardType}}
+                                        </p>
+                                    </div>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <p v-if="confirmationDeleteCard" class="mt-6 aparecer font-semibold">Are you sure you want to
+                            delete the selected card?</p>
+
+                        <div class="flex flex-row justify-center ease-in duration-200 mt-2">
+
+                            <button v-if="!confirmationDeleteCard" class="boton3a ease-in duration-200"
+                                @click="numberCardToDelete=''; modalDeleteCard=false;">
+                                GO BACK
+                            </button>
+
+                            <button v-if="!confirmationDeleteCard" :disabled="numberCardToDelete==''"
+                                class="disabled:bg-opacity-10 disabled:text-opacity-50 aparecer boton3b transition ease-in duration-200"
+                                @Click="confirmationDeleteCard=true">
+                                DELETE SELECTED
+                            </button>
+
+                            <button v-if="confirmationDeleteCard" class="boton3a aparecer"
+                                @click="confirmationDeleteCard=false">
+                                NO
+                            </button>
+
+                            <button v-if="confirmationDeleteCard" class="boton3c aparecer" type="submit">
+                                YES
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <!-- MODAL DELETE OK -->
+            <div v-if="deletedCardOk"
+                class="aparecer fixed flex justify-center bg-opacity-80 aparecer z-30 w-full h-full glass2">
+            </div>
+            <div v-if="deletedCardOk"
+                class="aparecer fixed flex justify-center justify-items-center content-center w-full z-40">
+                <div
+                    class="flex flex-col justify-center items-center mt-10 bg-skin-normal filter-none w-96 h-36 rounded-2xl shadow-sm border border-slate-300">
+                    <p class="text-skin-base text-center p-2 m-1 font-bold"><b>Card deleted successfully!</b></p>
+                </div>
+            </div>
+
+            <section class="pt-24">
+
+
+                <div>
+                    <div
+                        class="flex flex-row flex-wrap content-center items-center justify-center place-items-center shadow-sm bg-skin-normal">
+                        <!-- <img class="m-5 circle shadow-sm" src="./assets/hank.jpg" alt=""> -->
+                        <div class="basis-1/2 bg-skin-normal supercenter-col">
+                            <h4 class="antialiased text-skin-base text-xl font-bahnschrift"> <b
+                                    class="text-skin-muted">{{datosCliente.name}}</b> here you have your current cards.
+                            </h4>
+                        </div>
+                        <a v-if="cards.length < 6" class="mr-5" href="/web/create-cards.html">
+                            <div class="boton2">
+                                <p>New Card</p>
+                            </div>
+                        </a>
+                        <button v-if="cards.length>0" class="boton3b" @click="modalDeleteCard=true">
+                            <p>Delete Card</p>
+                        </button>
+                    </div>
+
+                    <!-- CARDS -->
+                    <section class="pb-32">
+
+                        <h2 class="pl-5 pt-4 bg-skin-normal font-bahnschrift text-3xl text-skin-muted"><b>CARDS</b></h2>
+
+                        <div class="flex flex-wrap justify-around p-5">
+
+                            <div v-for="card in cards" class="flex flex-col items-center mb-6">
+
+                                <div class="aspect-card w-96 rounded-xl m-2 shadow-lg aparecer CARD opacity-90 hover:opacity-100 peer"
+                                    :class="[card.cardColor, card.thruDate<today ? 'border-2 border-red-500' : '']">
+
+                                    <p
+                                        class="text-white text-2xl font-sans font-semibold static pl-24 pt-24 text-justify">
+                                        {{card.cardType}}
+                                    </p>
+
+                                    <p
+                                        class="text-white font-mono text-3xl antialiased font-semibold tracking-wider text-justify static pt-2 pl-5 sombra-texto">
+                                        {{card.number}}</p>
+
+                                    <p class="text-white font-sans font-light static pl-14 pt-3"
+                                        :class="card.thruDate<today ? 'font-extrabold text-red-600 drop-shadow-sm' : ''">
+                                        {{card.thruDate}}</p>
+
+                                    <p class="text-white text-lg font-sans static pl-5 pt-1 shadow-sm antialiased">
+                                        {{card.cardholder}}</p>
+
+                                </div>
+
+                                <p
+                                    class="aparecer boton4 text-base w-1/2 md:opacity-0 opacity-100  peer-hover:opacity-100">
+                                    CVV - {{card.cvv}}</p>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="./scripts/accounts.js"></script>
+</body>
+
+</html>

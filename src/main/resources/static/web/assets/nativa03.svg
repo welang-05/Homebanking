@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="152.55905mm"
+   height="28.169949mm"
+   viewBox="0 0 152.55905 28.169949"
+   version="1.1"
+   id="svg245796"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="nativa03.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview245798"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.0230034"
+     inkscape:cx="321.60207"
+     inkscape:cy="187.19391"
+     inkscape:window-width="1600"
+     inkscape:window-height="1201"
+     inkscape:window-x="2391"
+     inkscape:window-y="41"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs245793" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-19.118674,-75.761886)">
+    <path
+       id="rect65228-8-51-5-9-4-7-1-4-3-6-7"
+       style="fill:#f8fbfc;fill-opacity:1;stroke:none;stroke-width:0.0545352;stroke-opacity:1"
+       d="m 36.82919,75.761885 v 5.372532 h 0.958323 l 6.546443,13.480288 V 81.134417 h 3.317683 V 99.532888 H 43.384347 L 36.863262,86.260759 v 13.272129 h -0.03407 v 4.398942 H 51.642443 V 75.761885 Z" />
+    <path
+       style="fill:#03ffb6;fill-opacity:1;stroke:none;stroke-width:0.187217px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 40.53066,103.93183 c 0,0 -0.894088,-3.63126 -1.733996,-5.283702 -1.042833,-2.051538 -3.18078,-4.257462 -4.030797,-5.605325 -0.890458,-1.411929 -2.205533,-3.08655 -1.780413,-4.680738 0.533538,-2.000821 2.695447,-2.410804 2.695447,-2.410804 0,0 2.870834,-0.805277 4.34644,-0.960781 1.008649,-0.10635 1.75874,0.04748 3.042536,0.0229 1.283796,-0.02458 4.643818,-0.251631 4.643818,-0.251631 0,0 -6.156177,-1.353393 -6.771264,-1.4641 -0.537894,-0.09674 -0.481982,-0.201249 -0.73205,-0.274476 -0.209572,-0.06139 -0.640557,-0.137294 -0.640557,-0.137294 0,0 -1.112765,-1.433435 -1.53822,-1.683335 C 37.62849,80.965771 35.55098,80.567797 34.285505,80.392409 33.195697,80.24143 30.991337,80.186523 30.991337,80.186523 l -0.937935,1.235313 c -0.301064,0.396522 -0.320279,1.281059 -0.320279,1.281059 0,0 -1.853193,2.924791 -1.908434,4.576735 -0.103837,3.107105 3.006509,8.82861 3.006509,8.82861 0,0 -1.572293,0.698536 -3.455927,1.062886 -1.522581,0.294473 -3.753752,0.210242 -4.692916,0.928048 -1.995849,1.525374 -3.563673,5.832656 -3.563673,5.832656 z"
+       id="path869-1-7-5-2-0-1-5-3-8-7-8-7-3"
+       sodipodi:nodetypes="casscazcsacsacscacsscc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:25.9328px;line-height:1.25;font-family:sans-serif;fill:#f8fbfc;fill-opacity:1;stroke:none;stroke-width:0.135067"
+       x="50.307671"
+       y="99.464134"
+       id="text50375-1-1-7-7-3-7-3-4-16-9"><tspan
+         sodipodi:role="line"
+         id="tspan50373-5-6-4-4-1-7-3-4-9-1"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.9328px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift Bold';fill:#f8fbfc;fill-opacity:1;stroke-width:0.135067"
+         x="50.307671"
+         y="99.464134">ativa Bank</tspan></text>
+  </g>
+</svg>

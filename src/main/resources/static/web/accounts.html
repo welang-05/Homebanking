@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounts</title>
+
+    <link rel="stylesheet" href="../styles/tailwind.css">
+    <link rel="icon" type="image/x-icon" href="./assets/nativa02.svg">
+
+</head>
+
+<body>
+
+    <!-- DIV CON LA APLICACIÓN DE VUE -->
+    <div id="app" v-cloak>
+
+        <!-- DIV PARA APLICAR LOS DIFERENTES TEMAS DENTRO DE LA PÁGINA -->
+        <div :class="tema=='tema_0' ? '' : tema=='tema_1' ? 'theme-autumn-light' : tema=='tema_2' ? 'theme-autumn-dark' : tema=='tema_3' ? 'theme-winter-dark' : ''"
+            class="bg-skin-normal min-h-screen">
+
+            <!-- BARRA DE NAVEGACIÓN -->
+            <div class="aparecer md:flex row fixed w-full justify-between pt-2 z-30 glass2 hidden">
+                <a class="ml-6 m-3 img1 w-10 h-10" href="/web/accounts.html"></a>
+
+                <nav class="sm:flex row justify-around antialiased text-skin-base">
+                    <div class="supercenter-row ">
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3 hover:bg-skin-fill  rounded-full shadow"
+                            @click="theme(0)"></button>
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                            @click="theme(1)"></button>
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                            @click="theme(2)"></button>
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1  w-3 h-3 hover:bg-skin-fill rounded-full shadow"
+                            @click="theme(3)"></button>
+                    </div>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-opacity-90 hover:shadow-[0px_0px_2px_rgba(var(--color-fill),1)]  ease-in duration-300"
+                            href="/web/accounts.html">ACCOUNTS</a>
+                        <div class="absolute mt-11 w-2 h-2 rotate-45 bg-skin-fill aparecer"></div>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0 hover:bg-opacity hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)]  ease-in duration-300"
+                            href="/web/transfers.html">TRANFERS</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="/web/cards.html">CARDS</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="/web/loan-application.html">LOANS APPLICATION</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="javascript:void(0);" @click="bankLogout">LOGOUT</a>
+                    </span>
+                </nav>
+            </div>
+
+            <!-- TEMAS RESPONSIVE -->
+            <div class="md:hidden flex flex-row fixed w-full justify-between z-50">
+                <div class="supercenter-row md:hidden ">
+                    <button
+                        class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3 hover:bg-skin-fill  rounded-full shadow"
+                        @click="theme(0)"></button>
+                    <button
+                        class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                        @click="theme(1)"></button>
+                    <button
+                        class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                        @click="theme(2)"></button>
+                    <button
+                        class="bg-skin-button-muted pr-1 pl-1 m-1  w-3 h-3 hover:bg-skin-fill rounded-full shadow"
+                        @click="theme(3)"></button>
+                </div>
+                <div class=" flex flex-col items-center glass rounded-2xl mr-3 mt-3">
+                    <a class="p-3 m-2 rounded-lg z-50 text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased"
+                        href="javascript:void(0);" @click="bankLogout">LOGOUT</a>
+                </div>
+
+
+            </div>
+            
+
+            <!-- BARRA DE NAVEGACIÓN RESPONSIVE-->
+            <div class="aparecer md:hidden inset-x-0 bottom-0 pb-4 row fixed w-full pt-2 z-30 glass2 flex items-center justify-center">
+
+                <nav class="flex flex-row antialiased text-skin-base">
+                    <span class=" flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased "
+                            href="/web/accounts.html">ACCOUNTS</a>
+                        <div class="absolute mt-11 w-2 h-2 rotate-45 bg-skin-fill aparecer"></div>
+                    </span>
+                    <span class=" flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg  text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0"
+                            href="/web/transfers.html">TRANFERS</a>
+                    </span>
+                    <span class="flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg  text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0"
+                            href="/web/cards.html">CARDS</a>
+                    </span>
+                    <span class="flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg  text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0"
+                            href="/web/loan-application.html">LOANS</a>
+                    </span>
+                </nav>
+            </div>
+
+            <!-- MODAL DE LOANS -->
+            <div v-if="modalLoans"
+                class="aparecer fixed flex justify-center bg-opacity-80 aparecer z-30 w-full h-full glass2">
+            </div>
+            <div v-if="modalLoans"
+                class="aparecer fixed flex justify-center justify-items-center content-center w-full z-40">
+                <div
+                    class="flex flex-col justify-center items-center mt-10 bg-skin-normal text-skin-base filter-none w-96 h-96 rounded-2xl shadow-sm border border-slate-300 bg-opacity-50 hover:bg-opacity-70 transition-all ease-in duration-300">
+                    <div class="text-5xl font-bahnschrift opacity-80 inline">0{{loanMod.id}}</div>
+                    <p class="inline ml-4 mb-4 font-notosans font-bold text-sm">Type <b
+                            class="text-skin-muted text-lg">{{(loanMod.name).toUpperCase()}}</b></p>
+                    <div class="bg-skin-button-accent h-0.5 lg:w-1/2 w-full mt-2 mb-6 bg-opacity-70"></div>
+                    <!-- LÍNEA -->
+                    <div class="mb-2">
+
+                        <div>
+                            <p class="font-notosans font-bold text-xs opacity-60 inline ">REQUESTED AMOUNT $</p>
+                            <p class="mb-2 font-bold text-lg opacity-90 inline">{{(loanMod.amount/1.2).toFixed(2)}}</b>
+                        </div>
+
+                        <div>
+                            <p class="font-notosans font-semibold text-xs opacity-60 inline">AMOUNT TO PAY $</p>
+                            <p class="mb-2 font-bold text-lg opacity-90 inline">{{loanMod.amount}}</p>
+                        </div>
+
+                        <div>
+                            <p class="font-notosans font-semibold text-xs opacity-60 inline">NUMBER OF PAYMENTS </p>
+                            <p class="mb-2 font-bold text-lg opacity-90 inline">{{loanMod.payments}}</p>
+                        </div>
+
+                        <div>
+                            <p class="mb-1 font-notosans font-semibold text-xs opacity-60 inline">AMOUNT OF EACH PAYMENT
+                                $</p>
+                            <p class="font-bold text-lg opacity-90 inline">
+                                {{(loanMod.amount/loanMod.payments).toFixed(2)}}</p>
+                        </div>
+
+                    </div>
+
+                    <button class="boton3b" @click="modalLoans=false">RETURN</button>
+                </div>
+            </div>
+
+            <!-- MODAL DE CREATE ACCOUNTS -->
+            <div v-if="modalCreateAccounts.open"
+                class="aparecer fixed flex justify-center bg-opacity-80 aparecer z-30 w-full h-full glass2">
+            </div>
+            <div v-if="modalCreateAccounts.open"
+                class="aparecer fixed flex justify-center justify-items-center content-center w-full z-40">
+                <div
+                    class="flex flex-col justify-center items-center mt-10 bg-skin-normal text-skin-base filter-none w-1/2 h-96 rounded-2xl shadow-sm border border-slate-300 bg-opacity-50 hover:bg-opacity-70 transition-all ease-in duration-300">
+                    <div class="text-xl font-bahnschrift opacity-80 inline">CREATE A <b
+                            class="text-skin-muted font-bold">NEW ACCOUNT</b></div>
+
+                    <div class="bg-skin-button-accent h-0.5 lg:w-1/2 w-full mt-2 mb-6 bg-opacity-70"></div>
+                    <!-- LÍNEA -->
+
+                    <form
+                        @submit.prevent="newAccount(); modalCreateAccounts.open=false; modalCreateAccounts.accountType=''"
+                        class="mt-3 flex flex-col justify-center items-center">
+
+                        <p class=" font-notosans mb-2 text-sm">Please, select the type of account you want to create</p>
+
+                        <input class="hidden" type="radio" id="CURRENT" value="CURRENT"
+                            v-model="modalCreateAccounts.accountType">
+                        <label for="CURRENT">
+                            <div class=" flex relative z-10 hover:z-50 group mt-2 mb-2 bg-gradient-to-b from-skin-button-muted to-skin-button-hover-accent hover:w-52 hover:h-12 rounded-tr-lg rounded-bl-lg hover:rounded-lg hover:bg-opacity-100 ease-in duration-200 text-center items-center justify-center shadow-[1px_1px_5px_rgba(var(--color-button-hover),0.2)]"
+                                :class="[hover[0] ? 'blur-sm' : '', modalCreateAccounts.accountType=='CURRENT' ? 'border-2 border-gray-300 w-52 h-12 rounded-lg' : 'w-44 h-10  grayscale-[50%] hover:grayscale-0']"
+                                @mouseover="hover[1]=true; hover[0]=false" @mouseleave="hover[1]=false">
+                                <p
+                                    class="text-white place-self-center font-bahnschrift font-bold drop-shadow-md group-hover:opacity-100 ease-in duration-200">
+                                    CURRENT
+                                </p>
+                            </div>
+                        </label>
+
+                        <input class="hidden" type="radio" id="SAVINGS" value="SAVINGS"
+                            v-model="modalCreateAccounts.accountType">
+                        <label for="SAVINGS">
+                            <div class=" flex relative z-10 hover:z-50 group mt-2 mb-2 bg-gradient-to-b from-skin-button-muted to-skin-button-hover-accent hover:w-52 hover:h-12 rounded-tr-lg rounded-bl-lg hover:rounded-lg hover:bg-opacity-100 ease-in duration-200 text-center items-center justify-center shadow-[1px_1px_5px_rgba(var(--color-button-hover),0.2)]"
+                                :class="[hover[1] ? 'blur-sm' : '', modalCreateAccounts.accountType=='SAVINGS' ? 'border-2 border-gray-300 w-52 h-12 rounded-lg' : 'w-44 h-10  grayscale-[50%] hover:grayscale-0']"
+                                @mouseover="hover[0]=true; hover[1]=false" @mouseleave="hover[0]=false">
+                                <p
+                                    class="text-white place-self-center font-bahnschrift font-bold drop-shadow-md  group-hover:opacity-100 ease-in duration-200">
+                                    SAVINGS
+                                </p>
+                            </div>
+                        </label>
+
+                        <div class="flex felx-row justify-between w-3/5">
+                            <button class="boton3b mr-3"
+                                @click="modalCreateAccounts.open=false; modalCreateAccounts.accountType==''">RETURN</button>
+
+                            <button :disabled="modalCreateAccounts.accountType==''" type="submit"
+                                class="disabled:bg-opacity-10 disabled:text-opacity-50 aparecer boton3b ml-3 transition ease-in duration-200">
+                                CREATE SELECTED
+                            </button>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+
+            <!-- MODAL CREATION OK -->
+            <div v-if="modalCreateAccounts.modalFin"
+                class="aparecer fixed flex justify-center bg-opacity-80 aparecer z-30 w-full h-full glass2">
+            </div>
+            <div v-if="modalCreateAccounts.modalFin"
+                class="aparecer fixed flex justify-center justify-items-center content-center w-full z-40">
+                <div
+                    class="flex flex-col justify-center items-center mt-10 bg-skin-normal filter-none w-96 h-36 rounded-2xl shadow-sm border border-slate-300">
+                    <p class="text-skin-base text-center p-2 m-1 font-bold"><b>{{this.modalCreateAccounts.message}}</b>
+                    </p>
+                </div>
+            </div>
+
+            <!-- CUERPO -->
+
+            <section class="pt-24 flex flex-col mr-5 ml-5 z-20">
+
+                <!-- CUERPO ARRIBA -->
+                <section class="flex lg:flex-row flex-col content-center">
+
+                    <!-- CUERPO IZQUIERDA -->
+                    <section class="flex flex-col lg:w-2/5 w-full items-center">
+
+                        <!-- BIENVENIDA A USUARIO -->
+                        <div>
+                            <div class="basis-1/2 bg-skin-normal supercenter-col">
+                                <h4
+                                    class="antialiased text-6xl lg:text-7xl font-extrabold sinfondo ease-out duration-300">
+                                    WELCOME</h4>
+                                <p class="text-skin-base font-semibold font-bahnschrift text-lg antialiased text-opacity-80 aparecer2
+                                ">{{datosCliente.name}} {{datosCliente.lastName}}</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-skin-button-accent h-0.5 lg:w-1/2 w-full mt-6 mb-6 bg-opacity-70"></div>
+                        <!-- LÍNEA -->
+
+                        <!-- CUENTAS -->
+
+                        <div
+                            class="flex flex-col items-center w-full p-3 mt-5 rounded-xl hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.2)]">
+                            <h2 class="pl-5 pt-4 bg-skin-normal text-skin-base font-bahnschrift text-opacity-70">
+                                <b>YOUR CURRENT </b><b class="text-skin-muted">ACCOUNTS</b>
+                            </h2>
+                            <div v-for="cuenta in datosCliente.accountSet"
+                                class="group p-4 m-2 w-full rounded-xl text-skin-base bg-skin-normal flex flex-col items-center hover:bg-skin-button-muted hover:bg-opacity-25 ease-in duration-200">
+
+                                <div class="p-1">
+                                    <h3
+                                        class="m-1 font-bahnschrift text-xl text-opacity-90 group-hover:text-skin-muted">
+                                        {{cuenta.number}}</h3>
+                                    <h3
+                                        class="m-1 mt-0 font-bahnschrift font-bold text-sm text-opacity-80 group-hover:text-skin-muted">
+                                        TYPE: {{cuenta.accountType}} </h3>
+                                    <h3 class="m-1 font-notosans text-sm text-opacity-80">BALANCE: <b
+                                            class="font-semibold text-lg">${{cuenta.balance}}</b> </h3>
+                                    <h3 class="m-1 font-notosans text-sm text-opacity-80">CREATION DATE: <b
+                                            class="font-semibold">{{cuenta.creationDate}}</b></h3>
+                                </div>
+
+                                <div class="p-2">
+
+                                </div>
+
+                                <a :href="'/web/account.html?id='+cuenta.id">
+                                    <div class="boton2">
+                                        <h4>HISTORY</h4>
+                                    </div>
+                                </a>
+
+                                <div class="bg-skin-button-accent h-0.5 w-1/2 mt-6 mb-6 opacity-80"></div>
+                                <!-- LÍNEA -->
+
+
+                            </div>
+
+                            <a v-if="accounts.length <3"
+                                class="p-3 m-2 text-center w-full text-skin-base font-bahnschrift bg-skin-button-muted shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.4)] rounded-xl hover:rounded-3xl hover:bg-skin-button-accent hover:text-skin-inverted ease-in duration-200"
+                                href="javascript:void(0);"
+                                @click="modalCreateAccounts.open=true; hover=[false,false]">NEW ACCOUNT</a>
+
+                        </div>
+
+                    </section>
+
+                    <!-- CUERPO DERECHA -->
+                    <section class="flex flex-col lg:w-3/5 w-full m-2">
+
+                        <!-- RESUMEN DE CARDS -->
+                        <div
+                            class="p-3 m-4 flex flex-col flex-wrap grayscale-[20%] contrast-[.90] hover:contrast-100 hover:grayscale-0 ease-in duration-200 rounded-xl hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.2)] transition-all">
+
+                            <h2 class="pl-5 pt-4 mb-5 text-skin-base font-bahnschrift text-opacity-70">
+                                <b>YOUR CURRENT </b> <b class="text-skin-muted">CARDS</b>
+                            </h2>
+
+                            <div class="flex flex-row p-5 rounded-xl hover:bg-skin-button-muted hover:bg-opacity-25 ease-in duration-200"
+                                :class="cards.length==0 ? 'h-12 items-center' : cards.length>1 && cards.length<4 ? 'md:h-40 h-60' : 'md:h-72 h-96'">
+
+                                <p v-if="!cards[0]" class="text-skin-base w-full">You don't have cards to show yet</p>
+
+                                <div class="w-3/4 flex flex-row flex-wrap items-center content-center justify-center">
+                                    <div v-for="(card,i) in cards"
+                                        class="relative z-10 hover:z-50 group aspect-square bg-right-bottom mt-2 -mr-2 w-28 h-28 hover:w-40 hover:h-32 bg-[length:320px] hover:bg-[length:260px] rounded-tr-lg rounded-bl-lg hover:rounded-lg hover:bg-opacity-100 ease-in duration-200"
+                                        :class="[hover[i] ? 'blur-sm' : '', card.cardColor]" @mouseover="cardHover(i)"
+                                        @mouseleave="this.hover=this.hover.map(hover=>false)">
+                                        <p
+                                            class="text-white text-xl font-bahnschrift font-bold drop-shadow-md mt-2 ml-2">
+                                            **** <b
+                                                class="opacity-0 group-hover:opacity-100 ease-in duration-200">{{card.number.slice(-4)}}</b>
+                                        </p>
+                                        <p
+                                            class="text-white text-xl font-bahnschrift font-bold drop-shadow-md mt-1 ml-2">
+                                            {{card.cardType}}</p>
+                                    </div>
+                                </div>
+
+                                <a href="/web/cards.html" class="w-1/4 flex items-center">
+                                    <button
+                                        class="group w-20 h-20 hover:w-24 hover:h-24 mt-2 ml-4 bg-skin-button-muted text-skin-base font-bahnschrift text-center rounded-tl-lg rounded-br-lg hover:rounded-tl-3xl hover:rounded-br-3xl shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] hover:bg-skin-button-hover-accent hover:bg-opacity-90 hover:text-skin-inverted hover:shadow-[1px_1px_5px_rgba(var(--color-fill),0.6)] ease-in duration-300">
+                                        <p class="font-semibold text-sm ease-in duration-300">go to</p>
+                                        <P class="group-hover:text-xl font-semibold ease-in duration-300">CARDS</P>
+                                    </button>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- LOANS -->
+                        <div
+                            class="flex flex-col p-3 mt-5 rounded-xl hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.2)] transition-all max-h-[48rem] md:max-h-[30rem] overflow-auto">
+
+                            <h2 class="pl-5 pt-4 text-skin-base font-bahnschrift text-opacity-70">
+                                <b>YOUR CURRENT </b> <b class="text-skin-muted">LOANS</b>
+                            </h2>
+
+                            <div v-for="(loan,i) in datosCliente.loanSet"
+                                class="group p-4 m-4 text-skin-base bg-skin-normal rounded-xl flex flex-row content-center items-center hover:bg-skin-button-muted hover:bg-opacity-25 ease-in duration-200">
+
+                                <div class="w-3/4">
+                                    <div
+                                        class="group-hover:text-skin-muted text-5xl font-bahnschrift opacity-80 inline">
+                                        0{{i+1}}</div>
+                                    <div class="inline ml-4 mb-4">Type: {{loan.name}}</div>
+                                    <div class="">Requested amount: ${{(loan.amount/1.2).toFixed(2)}}</div>
+                                    <div class="">Amount to pay: ${{loan.amount}}</div>
+                                </div>
+                                <div class="w-1/4">
+                                    <a href="javascript:void(0);" @click="loanModal(loan,i)">
+                                        <div
+                                            class="w-12 h-12 text-4xl text-center text-skin-base rounded-2xl hover:text-skin-inverted hover:rounded-full  hover:bg-skin-fill ease-in duration-200 shadow-[1px_1px_5px_rgba(var(--color-fill),0.4)] hover:shadow-[1px_1px_5px_rgba(var(--color-fill),0.8)]">
+                                            +</div>
+                                    </a>
+                                    <div class="font-bahnschrift text-xs mt-2 group-hover:text-skin-muted">DETAILS</div>
+                                </div>
+
+                            </div>
+
+                            <a class="p-2 m-3 text-center text-skin-base font-bahnschrift bg-skin-button-muted shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.4)] rounded-xl hover:rounded-3xl hover:bg-skin-button-accent hover:text-skin-inverted ease-in duration-200"
+                                href="/web/loan-application.html">APPLY TO NEW LOAN</a>
+
+                        </div>
+
+                        <!-- POSNET -->
+                        <div class="flex justify-end mt-4 mb-20">
+                            <a href="/web/postnet.html"
+                                class="boton4">POSTNET</a>
+                        </div>
+
+                    </section>
+
+                </section>
+
+
+            </section>
+
+
+            <!-- CONTAINER EXTERNO -->
+            <section class="flex flex-row flex-wrap">
+
+                <!-- DIV CONTENIDO IZQUIERDA -->
+                <div class="flex flex-col">
+
+                    <!-- WELCOME -->
+                    <div>
+
+                    </div>
+
+                    <!-- ACCOUNTS -->
+                    <div>
+
+                    </div>
+
+
+                </div>
+
+                <!-- DIV CONTENIDO DERECHA -->
+                <div class="flex flex-col">
+
+                    <!-- RANDOM QUOTE -->
+                    <div>
+
+                    </div>
+
+                    <!--  -->
+                    <div>
+
+                    </div>
+
+                    <div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="./scripts/accounts.js"></script>
+</body>
+
+</html>

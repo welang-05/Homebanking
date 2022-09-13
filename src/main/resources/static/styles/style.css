@@ -1,0 +1,365 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('../web/assets/bahnschrift.ttf?family=Bahnschrift:wght@300;400;800&display=swap');
+@import url('../web/assets/NotoSans-Regular.ttf?family=Notosans:wght@300;400;800&display=swap');
+
+[v-cloak] {
+  display: none;
+}
+
+@layer base {
+  :root {
+    --color-text-base: 13, 14, 15;
+    --color-text-muted: 3, 107, 78;
+    --color-text-inverted: 243, 252, 255;
+    --color-fill: 3, 202, 255;
+    --color-button-accent: 53, 113, 96;
+    --color-button-hover: 82, 205, 109;
+    --color-button-muted: 211, 246, 255;
+    --bg-normal: 250, 254, 255;
+    --url-nativa: url("/web/assets/nativa02.svg");
+    --fondo-index-nativa: url("/web/assets/f_index1.jpg");
+    --welcome: url("/web/assets/f_index15.jpg");
+  }
+
+  .theme-autumn-light {
+    --color-text-base: 35, 4, 2;
+    --color-text-muted: 237, 85, 46;
+    --color-text-inverted: 255, 250, 239;
+    --color-fill: 190, 155, 2;
+    --color-button-accent: 183, 72, 45;
+    --color-button-hover: 175, 60, 27;
+    --color-button-muted: 175, 60, 27;
+    --bg-normal: 255, 252, 247;
+    --url-nativa: url("/web/assets/nativa02.svg");
+    --welcome: url("/web/assets/f_index6.jpg");
+  }
+
+  .theme-autumn-dark {
+    --color-text-base: 250, 221, 161;
+    --color-text-muted: 237, 85, 46;
+    --color-text-inverted: 45, 12, 3;
+    --color-fill: 190, 155, 2;
+    --color-button-accent: 237, 85, 46;
+    --color-button-hover: 250, 170, 113;
+    --color-button-muted: 136, 100, 97;
+    --bg-normal: 0, 14, 18;
+    --url-nativa: url("/web/assets/nativa04.svg");
+    --welcome: url("/web/assets/f_index11.jpg");
+  }
+
+  .theme-winter-dark {
+    --color-text-base: 243, 252, 255;
+    --color-text-muted: 10, 217, 159;
+    --color-text-inverted: 13, 14, 15;
+    --color-fill: 11, 136, 194;
+    --color-button-accent: 41, 144, 240;
+    --color-button-hover: 66, 218, 249;
+    --color-button-muted: 97, 119, 153;
+    --bg-normal: 0, 14, 18;
+    --url-nativa: url("/web/assets/nativa04.svg");
+    --welcome: url("/web/assets/f_index12.jpg");
+  }
+}
+
+.a {
+  --color-text-base: rgb(13, 14, 15);
+  --color-text-muted: rgb(3, 107, 78);
+  --color-text-inverted: rgb(243, 252, 255);
+  --color-fill: rgb(3, 202, 255);
+  --color-fill-shadow: rgb(3, 200, 255);
+  --color-button-accent: rgb(53, 113, 96);
+  --color-button-hover: rgb(82, 205, 109);
+  --color-button-muted: rgb(211, 246, 255);
+  --bg-normal: rgb(250, 254, 255);
+}
+
+.d {
+  --color-text-base: rgb(243, 252, 255);
+  --color-text-muted: rgb(10, 217, 159);
+  --color-text-inverted: rgb(13, 14, 15);
+  --color-fill: rgb(11, 136, 194);
+  --color-button-accent: rgb(41, 144, 240);
+  --color-button-hover: rgb(66, 218, 249);
+  --color-button-muted: rgb(97, 119, 153);
+  --bg-normal: rgb(0, 14, 18);
+}
+
+.b {
+  --color-text-base: rgb(35, 4, 2);
+  --color-text-muted: rgb(237, 85, 46);
+  --color-text-inverted: rgb(255, 250, 239);
+  --color-fill: rgb(172, 42, 42);
+  --color-button-accent: rgb(183, 72, 45);
+  --color-button-hover: rgb(175, 60, 27);
+  --color-button-muted: rgb(220, 170, 170);
+  --bg-normal: rgb(255, 252, 247);
+}
+
+.c {
+  --color-text-base: rgb(250, 221, 161);
+  --color-text-muted: rgb(237, 85, 46);
+  --color-text-inverted: rgb(45, 12, 3);
+  --color-fill: rgb(190, 155, 2);
+  --color-button-accent: rgb(237, 85, 46);
+  --color-button-hover: rgb(250, 170, 113);
+  --color-button-muted: rgb(136, 100, 97);
+  --bg-normal: rgb(6, 1, 1);
+}
+
+
+.supercenter-col {
+  @apply flex-col grid justify-center justify-items-center align-middle;
+}
+
+.supercenter-row {
+  @apply flex flex-row justify-center justify-items-center align-middle;
+}
+
+.boton0 {
+  @apply ease-in duration-300 w-28 h-12 p-2 m-3 cursor-pointer rounded-lg text-center shadow-[1px_1px_5px_rgba(var(--color-text-muted),0.3)] hover:border overflow-hidden active:bg-skin-fill active:text-skin-inverted;
+}
+
+.boton1 {
+  @apply ease-in duration-300 bg-skin-fill cursor-pointer  font-bahnschrift text-skin-base text-center p-2 m-3 w-36 h-12 shadow-[1px_1px_5px_rgba(var(--color-text-muted),0.3)] rounded-lg hover:text-skin-inverted hover:rounded-2xl hover:shadow-[1px_1px_5px_rgba(var(--color-fill),0.8)];
+}
+
+.boton2{
+  @apply p-2 m-1 bg-skin-normal text-skin-base text-sm font-bahnschrift w-24 text-center rounded-lg shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] hover:bg-skin-fill hover:rounded-2xl hover:text-skin-inverted hover:shadow-[1px_1px_5px_rgba(var(--color-fill),0.6)] ease-in duration-300;
+}
+
+.boton3a{
+  @apply p-3 m-1 mt-4 bg-skin-normal text-skin-base font-bahnschrift w-24 text-center text-sm rounded-lg shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] enabled:hover:bg-skin-fill enabled:hover:bg-opacity-90 enabled:hover:text-skin-inverted enabled:hover:rounded-2xl enabled:hover:shadow-[1px_1px_5px_rgba(var(--color-fill),0.6)] ease-in duration-300;
+}
+
+.boton3b{
+  @apply p-3 m-1 mt-4 bg-skin-button-muted text-skin-base font-bahnschrift w-24 text-center text-sm rounded-lg shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] enabled:hover:bg-skin-fill enabled:hover:bg-opacity-90 enabled:hover:text-skin-inverted enabled:hover:rounded-2xl enabled:hover:shadow-[1px_1px_5px_rgba(var(--color-fill),0.6)] ease-in duration-300;
+}
+
+.boton3c{
+  @apply p-3 m-1 mt-4 bg-red-400 text-skin-base font-bahnschrift w-24 text-center text-sm rounded-lg shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] enabled:hover:bg-red-600 enabled:hover:bg-opacity-90 enabled:hover:text-skin-inverted enabled:hover:rounded-2xl enabled:hover:shadow-[1px_1px_5px_rgba(var(--color-fill),0.6)] ease-in duration-300;
+}
+
+.boton4{
+  @apply flex align-middle justify-center items-center content-center p-2 text-xs text-skin-base font-bahnschrift font-semibold m-2 bg-skin-button-muted hover:bg-skin-button-accent hover:text-skin-inverted rounded-md shadow-[1px_1px_5px_rgba(var(--color-button-muted),0.6)] hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.6)] transition-all duration-200;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  min-height:100%;
+  /* background: linear-gradient(180deg, rgba(var(--bg-normal),1) 50%, rgba(var(--color-button-accent),1) 70%); */
+ /*  background: linear-gradient(180deg, rgb(210, 123, 123) 13%, rgba(32, 133, 167, 0.579) 77%); */
+}
+
+.prueba {
+  width: 300px;
+  height: 50px;
+  background-color: var(--color-button-over);
+}
+
+.small {
+  display: none;
+}
+
+.soft {
+  transition: .4s;
+}
+
+.sinfondo{
+  color: transparent;
+  background: var(--welcome);
+  background-position: 40% 50%;
+  -webkit-background-clip: text;
+  position:relative;
+  text-align:center;
+}
+
+/* From https://css.glass */
+.glass {
+  background: rgba(255, 255, 255, 0.17);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass:hover {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(2px);
+}
+
+.glass2 {
+  background: rgba(var(--bg-normal), 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.nativa_f {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 13%, rgba(243, 252, 255, 0) 77%), var(--fondo-index-nativa);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+}
+
+
+@media only screen and (max-width:600px) {
+  .small {
+    display: flexbox;
+  }
+}
+
+.letraroja {
+  color: crimson;
+}
+
+.letraverde {
+  color: chartreuse;
+}
+
+
+.icon {
+  width: 20px;
+  height: auto;
+}
+
+/* ENLACES */
+
+
+/* IMÁGENES */
+
+.img1 {
+  width: 40px;
+  background: var(--url-nativa);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.img2 {
+  width: 100px;
+  height: 100px;
+  object-fit: fill;
+}
+
+.alturaminima{
+  min-height: 250px;
+}
+
+
+/* DIVS CON FORMAS */
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #0d0e0f;
+}
+
+/* TRANSICIÓN AL CARGAR PÁGINA */
+.aparecer {
+  transition: .8s;
+  animation: FadeIn .8s;
+  -webkit-animation: FadeIn .8s;
+  -moz-animation: FadeIn .8s;
+  -o-animation: FadeIn .8s;
+  -ms-animation: FadeIn .8s;
+}
+
+.aparecer2{
+  transition: 2s;
+  animation: FadeIn 2s;
+  -webkit-animation: FadeIn 2s;
+  -moz-animation: FadeIn 2s;
+  -o-animation: FadeIn 2s;
+  -ms-animation: FadeIn 2s;
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0.0
+  }
+
+  ;
+
+  100% {
+    opacity: 1
+  }
+
+  ;
+}
+
+@-moz-keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* DIVS PARA CARDS */
+
+.CARD {
+  background-size: cover;
+  box-sizing: border-box;
+}
+
+.SILVER {
+  background-image: url(../web/assets/Card01_SILVER.png);
+
+}
+
+.GOLD {
+  background-image: url(../web/assets/Card02_GOLD.png);
+}
+
+.TITANIUM {
+  background-image: url(../web/assets/Card03_TITANIUM.png);
+}
+
+.sombra-texto {
+  text-shadow: #0d0e0f5e 1px 0.5px 0.5px;
+}
+
+.paisaje{
+  background-image: url(./assets/paisaje.png);
+}
+

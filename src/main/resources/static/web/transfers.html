@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounts</title>
+
+    <link rel="stylesheet" href="../styles/tailwind.css">
+    <link rel="icon" type="image/x-icon" href="./assets/nativa02.svg">
+
+</head>
+
+<body>
+
+    <div id="app" v-cloak>
+
+        <!-- DIV PARA APLICAR LOS DIFERENTES TEMAS DENTRO DE LA PÁGINA -->
+        <div :class="tema=='tema_0' ? '' : tema=='tema_1' ? 'theme-autumn-light' : tema=='tema_2' ? 'theme-autumn-dark' : tema=='tema_3' ? 'theme-winter-dark' : ''"
+            class="bg-skin-normal min-h-screen">
+
+            <!-- BARRA DE NAVEGACIÓN -->
+            <div class="aparecer md:flex row fixed w-full justify-between pt-2 z-30 glass2 hidden">
+                <a class="p-2 ml-6 m-3 img1 w-10 h-10" href="/web/accounts.html"></a>
+
+                <nav class="sm:flex row justify-around antialiased text-skin-base">
+                    <div class="supercenter-row ">
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3 hover:bg-skin-fill  rounded-full shadow"
+                            @click="theme(0)"></button>
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                            @click="theme(1)"></button>
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                            @click="theme(2)"></button>
+                        <button
+                            class="bg-skin-button-muted pr-1 pl-1 m-1  w-3 h-3 hover:bg-skin-fill rounded-full shadow"
+                            @click="theme(3)"></button>
+                    </div>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="/web/accounts.html">ACCOUNTS</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-opacity-90 hover:shadow-[0px_0px_2px_rgba(var(--color-fill),1)]  ease-in duration-300"
+                            href="/web/transfers.html">TRANFERS</a>
+                        <div class="absolute mt-11 w-2 h-2 rotate-45 bg-skin-button-accent aparecer"></div>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="/web/cards.html">CARDS</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="/web/loan-application.html">LOANS APPLICATION</a>
+                    </span>
+                    <span class="pr-4 flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
+                            href="javascript:void(0);" @click="bankLogout">LOGOUT</a>
+                    </span>
+                </nav>
+            </div>
+
+            <!-- TEMAS RESPONSIVE -->
+            <div class="md:hidden flex flex-row fixed w-full justify-between z-50">
+                <div class="supercenter-row md:hidden ">
+                    <button class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3 hover:bg-skin-fill  rounded-full shadow"
+                        @click="theme(0)"></button>
+                    <button class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                        @click="theme(1)"></button>
+                    <button class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
+                        @click="theme(2)"></button>
+                    <button class="bg-skin-button-muted pr-1 pl-1 m-1  w-3 h-3 hover:bg-skin-fill rounded-full shadow"
+                        @click="theme(3)"></button>
+                </div>
+                <div class=" flex flex-col items-center glass rounded-2xl mr-3 mt-3">
+                    <a class="p-3 m-2 rounded-lg text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased"
+                        href="javascript:void(0);" @click="bankLogout">LOGOUT</a>
+                </div>
+
+
+            </div>
+
+
+            <!-- BARRA DE NAVEGACIÓN RESPONSIVE-->
+            <div
+                class="aparecer md:hidden inset-x-0 bottom-0 pb-4 row fixed w-full pt-2 z-30 glass2 flex items-center justify-center">
+
+                <nav class="flex flex-row antialiased text-skin-base">
+                    <span class=" flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased "
+                            href="/web/accounts.html">ACCOUNTS</a>
+                    </span>
+                    <span class=" flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg  text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0"
+                            href="/web/transfers.html">TRANFERS</a>
+                            <div class="absolute mt-11 w-2 h-2 rotate-45 bg-skin-button-accent aparecer"></div>
+                    </span>
+                    <span class="flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg  text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0"
+                            href="/web/cards.html">CARDS</a>
+                    </span>
+                    <span class="flex flex-col items-center">
+                        <a class="p-3 m-2 rounded-lg  text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased bg-opacity-0"
+                            href="/web/loan-application.html">LOANS</a>
+                    </span>
+                </nav>
+            </div>
+
+            <!-- MODAL DE ERROR -->
+            <div v-if="modalError"
+                class="aparecer fixed flex justify-center bg-opacity-80 aparecer z-30 w-full h-full glass2">
+            </div>
+            <div v-if="modalError"
+                class="aparecer fixed flex justify-center justify-items-center content-center w-full z-40">
+                <div
+                    class="flex flex-col justify-center items-center mt-10 bg-skin-normal filter-none w-96 h-36 rounded-2xl shadow-sm border border-slate-300">
+                    <p class="text-skin-base text-center p-2 m-1">{{error}}</p>
+                    <button class="boton1 font-bold" @click="modalError=false; error='';">OK</button>
+                </div>
+            </div>
+
+
+            <!-- MODAL de CONFIRMACIÓN DE TRANSFERENCIA -->
+            <div v-if="modalConfirmation"
+                class="aparecer fixed flex justify-center bg-opacity-80 aparecer z-30 w-full h-full glass2">
+            </div>
+            <div v-if="modalConfirmation"
+                class="aparecer fixed flex justify-center justify-items-center content-center w-full z-40">
+                <div
+                    class="flex flex-col justify-center items-center mt-10 bg-skin-normal bg-opacity-50 hover:bg-opacity-70 p-4 pb-6 w-96 h-auto rounded-2xl shadow-sm border border-slate-300 ease-in duration-300">
+                    <div class="text-xl text-center text-skin-base font-bahnschrift opacity-80 inline">CONFIRM THE <b
+                        class="text-skin-muted font-bold">TRANSFER INFORMATION</b></div>
+                    <div class="bg-skin-button-accent h-0.5 lg:w-1/2 w-full mt-2 mb-3 bg-opacity-70"></div>
+                    <!-- LÍNEA -->
+                    <p class="text-skin-base text-center p-2 m-1"><b>From Account:</b> {{currentTransfer.from}}</p>
+                    <p class="text-skin-base text-center p-2 m-1"><b>To Account:</b> {{currentTransfer.to}}</p>
+                    <p class="text-skin-base text-center p-2 m-1"><b>Amount:</b> {{currentTransfer.amount}}</p>
+                    <p v-if="currentTransfer.description != ''" class="text-skin-base text-center p-2 m-1">
+                        <b>Description:</b></p>
+                    <p class="text-skin-base text-center mb-3">{{currentTransfer.description}}</p>
+                    <div>
+                        <button class="boton1 font-bold" @click="modalConfirmation=false">RETURN</button>
+                        <button class="boton1 font-bold"
+                            @click="makeTransfer(); modalConfirmation=false;">CONFIRM</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL TRANSFERENCIA REALIZADA -->
+            <div v-if="section.confirm"
+                class="aparecer fixed flex justify-center bg-opacity-80 aparecer z-30 w-full h-full glass2">
+            </div>
+            <div v-if="section.confirm"
+                class="aparecer fixed flex justify-center justify-items-center content-center w-full z-40">
+                <div
+                    class="flex flex-col justify-center items-center mt-10 bg-skin-normal filter-none w-96 h-36 rounded-2xl shadow-sm border border-slate-300">
+                    <p class="text-skin-base text-center p-2 m-1 font-bold">Transfer done successfully!</p>
+                </div>
+            </div>
+
+            <section class="pt-24 flex justify-center">
+
+                <div
+                    class="aparecer mr-10 ml-10 p-4 pb-14 mb-20 md:w-4/5 w-full rounded-3xl flex-col grid justify-center align-middle justify-items-center glass2 drop-shadow-[0px_1px_2px_var(--color-button-accent)]">
+
+                    <form @submit.prevent="modalConfirmation=true" class="flex flex-col">
+
+                        <div class="text-xl font-bahnschrift opacity-80 inline text-skin-muted m-4">MAKE A <b
+                            class="text-skin-base text-3xl font-bold">TRANSFER</b></div>
+
+                        <p class="p-2 text-skin-base font-notosans">Select if you want to make a transfer from your accounts or to
+                            another client</p>
+                        <div class="flex flex-row content-around font-notosans">
+
+                            <div class="aparecer w-24 p-2 m-3 cursor-pointer font-bold text-sm font-bahnschrift bg-skin-normal text-skin-base rounded-lg text-center shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)]"
+                                :class="section.destinySelf ? 'bg-skin-fill text-skin-inverted' : '' " @click="section.destinySelf=!section.destinySelf; section.destinyOther=false;
+                                currentTransfer.from =''; currentTransfer.to ='';">Your
+                                Accounts</div>
+                            <div class="aparecer w-24 p-2 m-3 cursor-pointer font-bold text-sm font-bahnschrift bg-skin-normal text-skin-base rounded-lg text-center shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)]"
+                                :class="section.destinyOther ? 'bg-skin-fill text-skin-inverted' : '' "
+                                @click="section.destinyOther=!section.destinyOther; section.destinySelf=false; currentTransfer.from =''; currentTransfer.to =''; ">
+                                Another
+                                Client</div>
+
+                        </div>
+
+                        <!-- TRANSFERENCIA HACIA UNA CUENTA PROPIA -->
+                        <div v-if="section.destinySelf" class="aparecer">
+
+                            <p class="text-skin-base p-2">Select the source account</p>
+                            <div>
+
+                                <p class="text-red-600" v-if="section.destinySelf && accounts.length==1">You only have
+                                    one account!</p>
+
+                                <div v-if="accounts.length>1" class="flex flex-row">
+
+                                    <div v-for="account in accounts">
+
+                                        <div class="p-2 m-2 text-skin-base">
+                                            <input type="radio" :id="account.number" v-model="currentTransfer.from"
+                                                :value="account.number" class="hidden peer"
+                                                >
+                                            <label :for="account.number"
+                                                class="m-2  boton2 peer-checked:bg-red-400" @click="section.sourceSelected=true; balance(account.number);">{{account.number}}</label>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="m-2" v-if="currentTransfer.from != ''">
+
+                                <p class="text-skin-base text-sm antialiased">CURRENT BALANCE: <b
+                                        :class="currentBalance<currentTransfer.amount || currentBalance==0 ? 'text-red-500' : ''">
+                                        {{currentBalance}}</b></p>
+
+                            </div>
+
+
+                            <p v-if="section.sourceSelected" class="text-skin-base p-2">Select the destiny account</p>
+                            <div class="aparecer flex flex-row" v-if="section.sourceSelected">
+
+                                <div v-for="account in accounts">
+
+                                    <div v-if="account.number!=currentTransfer.from" class="p-2 m-2 text-skin-base">
+                                        <input type="radio" :id="account.number+'1'" v-model="currentTransfer.to"
+                                            :value="account.number" class="hidden peer" >
+                                        <label :for="account.number+'1'" @click="section.destinySelected=true;"
+                                            class="m-2 boton2 peer-checked:bg-red-400">{{account.number}}</label>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div v-if="section.destinySelected">
+                                <p class="text-skin-base p-2">Enter the description of your transfer</p>
+
+                                <input class="p-2 m-3" maxlength="30" v-model="currentTransfer.description"
+                                    placeholder="Description">
+
+                                <p class="text-skin-base p-2">Enter the amount you want to transfer</p>
+                                <input v-model="currentTransfer.amount"
+                                    class="p-2 m-3 w-64 rounded-lg placeholder:text-center autofill:bg-skin-muted text-skin-muted focus:border-0 border-gray-900"
+                                    type="number" placeholder="amount of the transfer" required>
+                            </div>
+
+                        </div>
+
+                        <!-- TRANSFERENCIA HACIA UN TERCERO -->
+                        <div v-if="section.destinyOther" class="aparecer">
+
+                            <p class="text-skin-base p-2">Select the source account</p>
+                            <div>
+
+                                <div v-if="accounts.length >= 1" class="flex flex-row">
+
+                                    <div v-for="account in accounts">
+
+                                        <div class="p-2 m-2 text-skin-base">
+                                            <input type="radio" class="hidden peer" :id="account.number" v-model="currentTransfer.from"
+                                                :value="account.number">
+                                            <label :for="account.number" class="m-2 boton2 peer-checked:bg-red-400"  @click="section.sourceSelected=true; balance(account.number);">{{account.number}}</label>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="m-2" v-if="currentTransfer.from != ''">
+
+                                    <p class="text-skin-base text-sm antialiased">CURRENT BALANCE: <b
+                                            :class="currentBalance<currentTransfer.amount || currentBalance==0 ? 'text-red-500' : ''">
+                                            {{currentBalance}}</b></p>
+
+                                </div>
+
+                                <div v-if="section.sourceSelected">
+                                    <p class="text-skin-base p-2">Enter the destiny account number</p>
+
+                                    <input class="p-2 m-2" type="text" v-model="currentTransfer.to"
+                                        placeholder="Destiny account">
+
+                                    <p class="text-skin-base p-2">Enter the description of your transfer</p>
+
+                                    <input class="p-2 m-3" maxlength="30" v-model="currentTransfer.description"
+                                        placeholder="Description">
+
+                                    <p class="text-skin-base p-2">Enter the amount you want to transfer</p>
+                                    <input v-model="currentTransfer.amount"
+                                        class="p-2 m-3 w-64 rounded-lg placeholder:text-center autofill:bg-skin-muted text-skin-muted focus:border-0 border-gray-900"
+                                        type="number" placeholder="amount of the transfer" required>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <button
+                            v-if="currentTransfer.from.length > 0 && currentTransfer.to.length > 0 && currentTransfer.amount>0"
+                            class="boton1" type="submit">Make transfer</button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="./scripts/transfer.js"></script>
+</body>
+
+</html>
