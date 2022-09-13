@@ -49,10 +49,6 @@ const app = Vue.createApp({
                     this.cards.forEach(a => {
                         this.hover.push(false);
                      });
-                    if(this.accounts.length == 0){
-                        this.modalCreateAccounts.accountType='CURRENT';
-                        this.newAccount();
-                    }
                     });
         },
         bankLogout(){

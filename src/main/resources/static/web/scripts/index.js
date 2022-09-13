@@ -18,7 +18,8 @@ const app = Vue.createApp({
             error: '',
             modalConfirmation: false,
             modalError: false,
-            typingTimer: 0
+            typingTimer: 0,
+            newAccountOK: false
         }
     },
     created() {
@@ -37,8 +38,10 @@ const app = Vue.createApp({
                     this.modalError = true;
                 })
                 .then(response => {
-                    if (this.error.length == 0) {
+                    if ((this.error.length == 0) && (!this.newAccountOK)) {
                         window.location.href = '/web/accounts.html';
+                    } else {
+                        this.newAccount();
                     }
                 });
         },
@@ -59,9 +62,15 @@ const app = Vue.createApp({
                         this.login.name = this.register.email;
                         this.login.pwd = this.register.pwd;
                         this.modalConfirmation = true;
+                        this.newAccountOK=true;
                         setTimeout(() => this.bankLogin(), 1600);
                     }
                 })
+        },newAccount(){
+            axios.post('/api/clients/current/accounts?accountType=CURRENT')
+            .then(response => {
+                window.location.href = '/web/accounts.html';
+            });
         },
         randomBg() {
             randomBackground = Math.floor(Math.random() * 17) + 1;
