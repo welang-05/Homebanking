@@ -309,20 +309,20 @@
 
                         <!-- RESUMEN DE CARDS -->
                         <div
-                            class="p-3 m-4 flex flex-col flex-wrap grayscale-[20%] contrast-[.90] hover:contrast-100 hover:grayscale-0 ease-in duration-200 rounded-xl hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.2)] transition-all">
+                            class="p-3 m-4 flex flex-col h-[32rem] md:h-auto flex-wrap grayscale-[20%] contrast-[.90] hover:contrast-100 hover:grayscale-0 ease-in duration-200 rounded-xl hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.2)] transition-all">
 
                             <h2 class="pl-5 pt-4 mb-5 text-skin-base font-bahnschrift text-opacity-70">
                                 <b>YOUR CURRENT </b> <b class="text-skin-muted">CARDS</b>
                             </h2>
 
-                            <div class="flex flex-row p-5 rounded-xl hover:bg-skin-button-muted hover:bg-opacity-25 ease-in duration-200"
+                            <div class="flex md:flex-row flex-col items-center p-5 rounded-xl hover:bg-skin-button-muted hover:bg-opacity-25 ease-in duration-200"
                                 :class="cards.length==0 ? 'h-12 items-center' : cards.length>1 && cards.length<4 ? 'md:h-40 h-60' : 'md:h-72 h-96'">
 
                                 <p v-if="!cards[0]" class="text-skin-base w-full">You don't have cards to show yet</p>
 
                                 <div class="w-3/4 flex flex-row flex-wrap items-center content-center justify-center">
                                     <div v-for="(card,i) in cards"
-                                        class="relative z-10 hover:z-50 group aspect-square bg-right-bottom mt-2 -mr-2 w-28 h-28 hover:w-40 hover:h-32 bg-[length:320px] hover:bg-[length:260px] rounded-tr-lg rounded-bl-lg hover:rounded-lg hover:bg-opacity-100 ease-in duration-200"
+                                        class="relative z-10 hover:z-50 group aspect-square bg-right-bottom mt-2 -mr-2 md:w-28 md:h-28 w-24 h-24 hover:w-40 hover:h-32 bg-[length:320px] hover:bg-[length:260px] rounded-tr-lg rounded-bl-lg hover:rounded-lg hover:bg-opacity-100 ease-in duration-200"
                                         :class="[hover[i] ? 'blur-sm' : '', card.cardColor]" @mouseover="cardHover(i)"
                                         @mouseleave="this.hover=this.hover.map(hover=>false)">
                                         <p
@@ -338,7 +338,7 @@
 
                                 <a href="/web/cards.html" class="w-1/4 flex items-center">
                                     <button
-                                        class="group w-20 h-20 hover:w-24 hover:h-24 mt-2 ml-4 bg-skin-button-muted text-skin-base font-bahnschrift text-center rounded-tl-lg rounded-br-lg hover:rounded-tl-3xl hover:rounded-br-3xl shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] hover:bg-skin-button-hover-accent hover:bg-opacity-90 hover:text-skin-inverted hover:shadow-[1px_1px_5px_rgba(var(--color-fill),0.6)] ease-in duration-300">
+                                        class="group w-20 h-20 mt-8 md:mt-2 hover:w-24 hover:h-24 ml-4 bg-skin-button-muted text-skin-base font-bahnschrift text-center rounded-tl-lg rounded-br-lg hover:rounded-tl-3xl hover:rounded-br-3xl shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] hover:bg-skin-button-hover-accent hover:bg-opacity-90 hover:text-skin-inverted hover:shadow-[1px_1px_5px_rgba(var(--color-fill),0.6)] ease-in duration-300">
                                         <p class="font-semibold text-sm ease-in duration-300">go to</p>
                                         <P class="group-hover:text-xl font-semibold ease-in duration-300">CARDS</P>
                                     </button>
