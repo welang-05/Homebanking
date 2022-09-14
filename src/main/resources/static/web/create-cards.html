@@ -194,7 +194,10 @@
 
                         </div>
 
-                        <div v-if="(boton.DEBIT || boton.CREDIT) && (boton.GOLD || boton.TITANIUM || boton.SILVER)"
+                        <div v-if="boton.CREDIT && (boton.GOLD || boton.TITANIUM || boton.SILVER)"
+                            class="w-24 p-1 m-3 cursor-pointer bg-skin-normal font-bahnschrift text-skin-base rounded-lg text-center shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] hover:bg-skin-fill hover:text-skin-inverted"
+                            @click="newCard()">CREATE</div>
+                            <div v-if="boton.DEBIT && (boton.GOLD || boton.TITANIUM || boton.SILVER) && card.account"
                             class="w-24 p-1 m-3 cursor-pointer bg-skin-normal font-bahnschrift text-skin-base rounded-lg text-center shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] hover:bg-skin-fill hover:text-skin-inverted"
                             @click="newCard()">CREATE</div>
 
