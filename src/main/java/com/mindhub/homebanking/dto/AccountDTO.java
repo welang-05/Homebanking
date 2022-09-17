@@ -2,7 +2,6 @@ package com.mindhub.homebanking.dto;
 
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.AccountType;
-import com.mindhub.homebanking.models.Card;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;

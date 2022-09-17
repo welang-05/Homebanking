@@ -1,13 +1,14 @@
 package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.Services.AccountServices;
+import com.mindhub.homebanking.Services.ClientServices;
 import com.mindhub.homebanking.Services.LoanServices;
 import com.mindhub.homebanking.Services.TransactionServices;
 import com.mindhub.homebanking.dto.ClientLoanDTO;
 import com.mindhub.homebanking.dto.LoanApplicationDTO;
 import com.mindhub.homebanking.dto.LoanDTO;
 import com.mindhub.homebanking.models.*;
-import com.mindhub.homebanking.repository.*;
+import com.mindhub.homebanking.repository.ClientLoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,8 @@ public class LoanController {
     @Autowired
     AccountServices accountServices;
 
+    @Autowired
+    ClientLoanRepository clientLoanRepository;
 
     @GetMapping("/api/loans")
     public List<LoanDTO> loans(){
