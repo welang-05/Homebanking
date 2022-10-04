@@ -22,6 +22,12 @@
     --url-nativa: url("/web/assets/nativa02.svg");
     --fondo-index-nativa: url("/web/assets/f_index1.jpg");
     --welcome: url("/web/assets/f_index15.jpg");
+    --invert: 27%; 
+    --sepia: 59%;
+    --saturate: 1102%; 
+    --hue: 125deg;
+    --brightness: 95%;
+    --contrast: 98%;
   }
 
   .theme-autumn-light {
@@ -35,6 +41,12 @@
     --bg-normal: 255, 252, 247;
     --url-nativa: url("/web/assets/nativa02.svg");
     --welcome: url("/web/assets/f_index6.jpg");
+    --invert: 32%; 
+    --sepia: 39%;
+    --saturate: 1592%; 
+    --hue: 334deg;
+    --brightness: 97%;
+    --contrast: 91%;
   }
 
   .theme-autumn-dark {
@@ -48,6 +60,12 @@
     --bg-normal: 0, 14, 18;
     --url-nativa: url("/web/assets/nativa04.svg");
     --welcome: url("/web/assets/f_index11.jpg");
+    --invert: 36%; 
+    --sepia: 98%;
+    --saturate: 1992%; 
+    --hue: 347deg;
+    --brightness: 99%;
+    --contrast: 87%;
   }
 
   .theme-winter-dark {
@@ -61,7 +79,18 @@
     --bg-normal: 0, 14, 18;
     --url-nativa: url("/web/assets/nativa04.svg");
     --welcome: url("/web/assets/f_index12.jpg");
+    --invert: 77%; 
+    --sepia: 29%;
+    --saturate: 7259%; 
+    --hue: 116deg;
+    --brightness: 100%;
+    --contrast: 92%;
   }
+
+  .filtro{
+    filter: invert(var(--invert)) sepia(var(--sepia)) saturate(var(--saturate)) hue-rotate(var(--hue)) brightness(var(--brightness)) contrast(var(--contrast));
+  }
+
 }
 
 .a {

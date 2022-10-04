@@ -32,8 +32,7 @@ const app = Vue.createApp({
         this.initialTheme();
     },
     mounted() {
-
-
+        this.addClassY('navbar',80,'glass2');
     },
     methods: {
         obtenerDatos() {
@@ -74,6 +73,11 @@ const app = Vue.createApp({
             
         },
         theme(a){
+            if(a>4 && parseInt(this.tema.slice(-1))>2){
+                a=0;
+            }else if(a>4 && parseInt(this.tema.slice(-1))<3){
+                a=parseInt(this.tema.slice(-1))+1;
+            }
             this.tema = `tema_${a}`;
             localStorage.setItem('theme', JSON.stringify(a));
         },
@@ -81,6 +85,16 @@ const app = Vue.createApp({
             if(JSON.parse(localStorage.getItem('theme'))){
                 this.theme(JSON.parse(localStorage.getItem('theme')))
             }
+        },
+        addClassY(ref,yTrigger,classToAdd) {
+            const navbar = eval(`this.$refs.${ref}`);
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > yTrigger) {
+                    navbar.classList.add(classToAdd);
+                } else {
+                    navbar.classList.remove(classToAdd);
+                }
+            })
         }
     },
     computed: {

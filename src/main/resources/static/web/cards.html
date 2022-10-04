@@ -20,25 +20,32 @@
         <div :class="tema=='tema_0' ? '' : tema=='tema_1' ? 'theme-autumn-light' : tema=='tema_2' ? 'theme-autumn-dark' : tema=='tema_3' ? 'theme-winter-dark' : ''"
             class="bg-skin-normal min-h-screen">
 
+            <!-- MINI MENÚ TEMAS -->
+            <div class="fixed bottom-2 left-2 z-[31] group md:flex hidden transition-all ease-in-out duration-500">
+                <button><img
+                        class="relative bottom-0 mb-3 h-8 filtro opacity-50 group-hover:opacity-100 ease-in-out duration-300"
+                        src="/web/assets/color.png" alt=""></button>
+                <div class="hidden group-hover:flex aparecer2">
+                    <button
+                        class="bg-[#f3fcff] mx-1 p-1 hover:bg-[#03caff] rounded-full shadow-[1px_1px_5px_rgba(var(--color-text-base),0.3)] text-center text-[#03caff] hover:text-[#f3fcff] hover:rotate-180 ease-in-out duration-300"
+                        @click="theme(0)">◑</button>
+                    <button
+                        class="bg-[#fffaef] mx-1 p-1 hover:bg-[#ed552e] rounded-full shadow-[1px_1px_5px_rgba(var(--color-text-base),0.3)] text-center text-[#ed552e] hover:text-[#fffaef] hover:rotate-180 ease-in-out duration-300"
+                        @click="theme(1)">◑</button>
+                    <button
+                        class="bg-[#0d0e0f] mx-1 p-1 hover:bg-[#ed552e] rounded-full shadow-[1px_1px_5px_rgba(var(--color-text-base),0.3)] text-center text-[#ed552e] hover:text-[#0d0e0f] hover:rotate-180 ease-in-out duration-300"
+                        @click="theme(2)">◐</button>
+                    <button
+                        class="bg-[#0d0e0f] mx-1 p-1 hover:bg-[#0ad99f] rounded-full shadow-[1px_1px_5px_rgba(var(--color-text-base),0.3)] text-center text-[#0ad99f] hover:text-[#0d0e0f] hover:rotate-180 ease-in-out duration-300"
+                        @click="theme(3)">◐</button>
+                </div>
+            </div>
+
             <!-- BARRA DE NAVEGACIÓN -->
-            <div class="aparecer md:flex row fixed w-full justify-between pt-2 z-30 glass2 hidden">
+            <div ref="navbar" class="aparecer md:flex row fixed w-full justify-between pt-2 z-30 hidden">
                 <a class="p-2 ml-6 m-3 img1 w-10 h-10" href="/web/accounts.html"></a>
 
                 <nav class="sm:flex row justify-around antialiased text-skin-base">
-                    <div class="supercenter-row ">
-                        <button
-                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3 hover:bg-skin-fill  rounded-full shadow"
-                            @click="theme(0)"></button>
-                        <button
-                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
-                            @click="theme(1)"></button>
-                        <button
-                            class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
-                            @click="theme(2)"></button>
-                        <button
-                            class="bg-skin-button-muted pr-1 pl-1 m-1  w-3 h-3 hover:bg-skin-fill rounded-full shadow"
-                            @click="theme(3)"></button>
-                    </div>
                     <span class="pr-4 flex flex-col items-center">
                         <a class="p-3 m-2 rounded-lg hover:rounded-2xl text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased hover:text-skin-inverted hover:bg-gradient-to-r hover:from-skin-fill hover:to-skin-button-hover-accent hover:shadow-[1px_1px_5px_rgba(var(--color-button-accent),0.3)] ease-in duration-300"
                             href="/web/accounts.html">ACCOUNTS</a>
@@ -65,15 +72,10 @@
 
             <!-- TEMAS RESPONSIVE -->
             <div class="md:hidden flex flex-row fixed w-full justify-between z-50">
-                <div class="supercenter-row md:hidden ">
-                    <button class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3 hover:bg-skin-fill  rounded-full shadow"
-                        @click="theme(0)"></button>
-                    <button class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
-                        @click="theme(1)"></button>
-                    <button class="bg-skin-button-muted pr-1 pl-1 m-1 w-3 h-3  hover:bg-skin-fill  rounded-full shadow"
-                        @click="theme(2)"></button>
-                    <button class="bg-skin-button-muted pr-1 pl-1 m-1  w-3 h-3 hover:bg-skin-fill rounded-full shadow"
-                        @click="theme(3)"></button>
+                <div class="supercenter-row">
+                    <button><img
+                            class="relative bottom-0 left-3 mb-3 h-6 filtro opacity-50 group-hover:opacity-100 ease-in-out duration-300"
+                            src="/web/assets/color.png" alt="" @click="theme(5)"></button>
                 </div>
                 <div class=" flex flex-col items-center glass rounded-2xl mr-3 mt-3">
                     <a class="p-3 m-2 rounded-lg text-skin-base text-xs font-bahnschrift font-semibold text-opacity-70 antialiased"
