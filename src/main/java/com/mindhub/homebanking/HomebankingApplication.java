@@ -28,15 +28,13 @@ public class HomebankingApplication {
 	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {  //Inicializar datos utilizando los repositorios para Clientes y Accounts, este requerimiento de inicio, CommandLineRunner es una interfaz, utilizada para ejecutar el código después de que Spring Boot se inicia
 		return (args) -> {
 			//  Crear un par de clientes iniciales
-			Client cliente1 = new Client("Hank", "Scorpio", "mr.scorpio@gmail.com", 45,
-					passwordEncoder.encode("12345"));
+			Client cliente1 = new Client("Hank", "Scorpio", "mr.scorpio@gmail.com", 45, passwordEncoder.encode("12345"));
 			//Nuevo objeto
 			// cliente
 			// con los datos nombre y apellido
 			clientRepository.save(cliente1); //Esta forma de crear al cliente nos permite utilizarlo luego para la creación de la cuenta de este
 			Client cliente2 =
-					new Client("Juanito", "De los Palotes", "yosoyjuanito@gmail.com", 55,
-							passwordEncoder.encode("12345"));
+					new Client("Juanito", "De los Palotes", "yosoyjuanito@gmail.com", 55, passwordEncoder.encode("12345"));
 			//Nuevo
 			// objeto cliente usando otro constructor
 			clientRepository.save(cliente2); //Guardarlo en la base de datos
