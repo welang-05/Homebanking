@@ -193,7 +193,7 @@
             <section class="pt-24 flex justify-center">
                 <div>
                     <div
-                        class="flex flex-row flex-wrap content-center items-center justify-center place-items-center shadow-sm bg-skin-normal">
+                        class="flex flex-row flex-wrap content-center items-center justify-center place-items-center shadow-sm bg-skin-normal w-full">
                         <div class="basis-1/2 bg-skin-normal supercenter-col">
                             <h4 class="antialiased text-skin-base text-xl font-bahnschrift"> <b
                                     class="text-skin-muted">{{datosCliente.name}}</b> here you have your current cards.
@@ -212,13 +212,13 @@
                     <!-- CARDS -->
                     <section class="pb-32">
 
-                        <h2 class="pl-5 pt-4 bg-skin-normal font-bahnschrift text-3xl text-skin-muted"><b>CARDS</b></h2>
+                        <h2 class="pl-5 pt-4 bg-skin-normal font-bahnschrift text-3xl text-skin-muted w-full"><b>CARDS</b></h2>
 
                         <div class="flex flex-wrap justify-around p-5">
 
                             <div v-for="card in cards" class="flex flex-col items-center mb-6">
 
-                                <div class="aspect-card w-96 rounded-xl m-2 shadow-lg aparecer CARD opacity-90 hover:opacity-100 peer"
+                                <div class="aspect-card md:w-96 w-72 h-auto rounded-xl m-2 shadow-lg aparecer CARD opacity-90 hover:opacity-100 peer"
                                     :class="[card.cardColor, card.thruDate<today ? 'border-2 border-red-500' : '']">
 
                                     <p
