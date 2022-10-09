@@ -31,8 +31,7 @@ const app = Vue.createApp({
     },
     methods: {
         bankLogin() {
-            axios.post('/api/login', `email=${this.login.name}&password=${this.login.pwd}`,
-                { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+            axios.post('/api/login',`email=${this.login.name}&password=${this.login.pwd}`)
                 .catch(error => {
                     this.error = error.response.data.error;
                     this.modalError = true;
@@ -51,8 +50,7 @@ const app = Vue.createApp({
                 this.modalError = true;
                 return 0;
             }
-            axios.post('/api/clients', `name=${this.register.name}&lastName=${this.register.lastName}&email=${this.register.email}&password=${this.register.pwd}`,
-                { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+            axios.post('/api/clients',`name=${this.register.name}&lastName=${this.register.lastName}&email=${this.register.email}&password=${this.register.pwd}`)
                 .catch(error => {
                     this.error = error.response.data;
                     this.modalError = true;
