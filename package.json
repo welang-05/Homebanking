@@ -1,20 +1,20 @@
 {
-3    "name": "Homebanking",
-4    "version": "1.0.0",
-5    "description": "",
-6    "scripts": {
-7        "build": "echo \"No build specified\" && exit 1",
-8        "test": "echo \"No test specified\" && exit 1",
-9        "start": "node index.js"
-10    },
-11    "repository": {
-12        "type": "git",
-13        "url": "git+https://github.com/welang-05/Homebanking.git"
-14    },
-15    "author": "welang-05",
-16    "license": "ISC",
-17    "bugs": {
-18        "url": "https://github.com/welang-05/Homebanking/issues"
-19    },
-20    "homepage": "https://github.com/welang-05/Homebanking#readme"
-21}
+    "name": "Homebanking",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "build": "echo \"No build specified\" && exit 1",
+        "test": "echo \"No test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/welang-05/Homebanking.git"
+    },
+    "author": "welang-05",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/welang-05/Homebanking/issues"
+    },
+    "homepage": "https://github.com/welang-05/Homebanking#readme"
+}
